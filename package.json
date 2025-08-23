@@ -1,0 +1,8 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "Personal portfolio and blog website built with vanilla JavaScript",
+  "scripts": {
+    "start": "echo 'Open index.html in your browser or use a local server like: python -m http.server 8000'"
+  }
+}
