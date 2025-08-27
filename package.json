@@ -2,7 +2,22 @@
   "name": "personal-website",
   "version": "1.0.0",
   "description": "Personal portfolio and blog website built with vanilla JavaScript",
+  "author": "Emin Yorgun",
+  "license": "MIT",
   "scripts": {
-    "start": "echo 'Open index.html in your browser or use a local server like: python -m http.server 8000'"
+    "start": "echo 'Open index.html in your browser or use a local server like: python -m http.server 8000'",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Build process would go here - minification, bundling, etc.'"
+  },
+  "keywords": [
+    "portfolio",
+    "blog",
+    "vanilla-javascript",
+    "personal-website",
+    "software-engineer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eminyorgun/personal-website.git"
   }
 }

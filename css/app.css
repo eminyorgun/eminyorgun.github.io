@@ -8,8 +8,6 @@
   padding: 0;
 }
 
-
-
 /* ============================================
    Root Variables
 ============================================ */
@@ -62,8 +60,8 @@
   /* Height of fixed header + desired spacing; updated dynamically from JS */
   --header-offset: 72px;
   /* Code block theme */
-  --code-bg: #f7f6dc88; /* light code background */
-  --code-text: #111827; /* slate-900 */
+  --code-bg: #f7f6dc88;
+  --code-text: #111827;
   --code-border: rgba(17, 24, 39, 0.08);
   --code-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
   --code-accent: var(--primary-color);
@@ -96,6 +94,8 @@ body {
   position: relative;
   overflow-x: hidden;
 }
+
+
 
 .dark-mode {
   --text-primary: #F8F8F8;
@@ -639,10 +639,52 @@ footer {
 }
 
 .blog-preview {
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-  gap: 2rem; 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
+}
+
+.blog-preview-item {
+  background-color: var(--glass-effect);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.blog-preview-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.blog-preview-item h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+}
+
+.blog-preview-item p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.blog-preview-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.blog-preview-date {
+  color: var(--text-muted);
+}
+
+.blog-preview-author {
+  color: var(--text-secondary);
+  font-style: italic;
 }
 
 .post-card {
@@ -759,6 +801,64 @@ footer {
 .blog-card:hover { 
   transform: translateY(-10px); 
   box-shadow: 0 15px 25px rgba(0,0,0,0.1); 
+}
+
+.blog-card-content {
+  padding: 1.5rem;
+}
+
+.blog-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.blog-card-excerpt {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.blog-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-card-date {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.blog-card-author {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.blog-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.25rem 0.75rem;
+  background-color: var(--glass-effect);
+  backdrop-filter: var(--glass-blur);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border: var(--glass-border);
+  transition: var(--transition);
+}
+
+.tag:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
 }
 
 .blog-image { 
@@ -981,11 +1081,30 @@ footer {
   margin: 0 auto; 
 }
 
+.contact-header {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.contact-header p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+
+
 .contact-container { 
   display: grid; 
   grid-template-columns: 1fr 2fr; 
   gap: 3rem; 
-  margin-top: 2rem; 
+  margin-top: 0; 
 }
 
 .contact-info {
@@ -997,11 +1116,32 @@ footer {
 }
 
 .info-item { 
-  margin-bottom: 2rem; 
+  margin-bottom: 1rem; 
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .info-item:last-child { 
   margin-bottom: 0; 
+}
+
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.info-item a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.info-item a:hover {
+  color: var(--primary-color);
+  transform: translateX(2px);
 }
 
 .contact-form {
@@ -1257,8 +1397,7 @@ section {
   animation: fadeIn 0.8s ease-out; 
 }
 
-.post-card, 
-.blog-card {
+.post-card {
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
               box-shadow 0.4s ease;
 }
@@ -1348,4 +1487,3 @@ section {
   border-color: var(--secondary-color);
   box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
 }
-
