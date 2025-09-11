@@ -1489,58 +1489,7 @@ section {
   margin: 0 auto;
 }
 
-/* AI Search Section */
-.ai-search-section {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.search-box {
-  width: 100%;
-  flex: 1;
-}
-
-.ai-search-input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem 1.5rem;
-  border: 2px solid rgba(44, 90, 160, 0.2);
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.2) 100%);
-  backdrop-filter: blur(10px);
-  color: var(--text-primary);
-  font-size: 1rem;
-  transition: var(--transition);
-  text-align: center;
-}
-
-.ai-search-input::placeholder {
-  color: var(--text-secondary);
-  opacity: 0.8;
-}
-
-.ai-search-input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.2);
-  transform: translateY(-2px);
-}
-
-.dark-mode .profile-ai-container .profile-image img {
-  border-color: var(--secondary-color);
-}
-
-.dark-mode .ai-search-input {
-  background: linear-gradient(135deg, rgba(16, 26, 43, 0.9) 0%, rgba(16, 26, 43, 0.8) 100%);
-  border-color: rgba(212, 175, 55, 0.3);
-  color: var(--text-primary);
-}
-
-.dark-mode .ai-search-input:focus {
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
-}
+/* AI search box removed */
 
 /* Tag filter dropdown */
 .tag-filter { position: relative; display: inline-block; }

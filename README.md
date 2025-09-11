@@ -1,122 +1,130 @@
 # Personal Website
 
-A personal portfolio and blog website built with vanilla JavaScript, HTML, and CSS.
+Personal portfolio and blog built with vanilla JavaScript, HTML, and CSS. It’s a single‑page app using hash‑based routing (`#/home`, `#/blog`, `#/blog/{id}`, `#/contact`).
 
 ## Features
 
-- **Responsive Design**: Modern, mobile-first design with glass morphism effects
-- **Dark/Light Mode**: Toggle between dark and light themes
-- **Multi-page Navigation**: Home, Blog, and Contact pages with client-side routing
-- **Blog System**: Searchable blog posts with category filtering
-- **Contact Form**: Functional contact form with validation
-- **AI Search Section**: Placeholder for future AI chatbot integration
+- **Responsive layout**: Mobile‑first, modern styling
+- **Dark/Light theme**: Auto theme based on time of day + manual toggle with persistence
+- **Client‑side routing**: Home, Blog, Blog Post, Contact
+- **Blog system**:
+  - Markdown posts in `data/posts/*.md` with frontmatter
+  - Index in `data/posts/index.json`
+  - Search, tag filtering, pagination, and “Latest posts” on Home
+  - Syntax highlighting via PrismJS (light/dark themes switch with site theme)
+- **Contact form**: Client‑side validation and simulated submission (no backend)
+- **Icons**: [Lucide] icons via `vendor/lucide.js` using `data-lucide` attributes
 
 ## Technology Stack
 
 - **Frontend**: Vanilla JavaScript (ES6+)
-- **Styling**: CSS3 with CSS Variables and Flexbox/Grid
-- **Build Tool**: None required (pure vanilla JS)
-- **Server**: Simple HTTP server for development
+- **Styling**: CSS (CSS variables, Flexbox, Grid) in `css/app.css`
+- **Syntax highlighting**: PrismJS via CDN
+- **Icons**: Lucide via local `vendor/lucide.js`
+- **Build tooling**: None required (static site)
 
 ## Project Structure
 
 ```
 personal-website/
-├── index.html              # Main HTML file
-├── src/
-│   ├── App.js             # Main JavaScript application
-│   ├── App.css            # All styles
-│   └── assets/            # Images, fonts, and icons
-│       ├── favicon.ico
-│       ├── logo192.png
-│       ├── logo512.png
-│       ├── logo.png
-│       ├── me.jpeg
-│       ├── bg3.jpg
-│       └── fonts/
-├── vendor/                 # Third-party libraries
-│   └── lucide.js          # Icon library
-└── package.json            # Project configuration
+├── index.html
+├── css/
+│   └── app.css
+├── js/
+│   ├── app.js         # Main application (routing, rendering, state)
+│   ├── config.js      # Centralized configuration/constants
+│   └── utils.js       # Utilities (frontmatter parsing, markdown, helpers)
+├── data/
+│   └── posts/
+│       ├── index.json # List of posts and metadata
+│       └── *.md       # Markdown posts with frontmatter
+├── assets/
+│   ├── favicon.ico
+│   └── me.jpeg
+├── vendor/
+│   └── lucide.js      # Lucide icon library (local)
+├── .nojekyll          # For GitHub Pages (disable Jekyll)
+├── package.json
+└── README.md
 ```
 
-## Getting Started
+## Routing
+
+- `#/home` — Home
+- `#/blog` — Blog listing (search, tag filter, pagination)
+- `#/blog/{id}` — Blog post detail (renders markdown → HTML)
+- `#/contact` — Contact form (client‑side only, simulated submit)
+
+## Blog Content
+
+- Add a markdown file under `data/posts/` (e.g., `my-post.md`). Start with frontmatter:
+
+```md
+---
+id: my-post
+title: My Post Title
+date: 2025-09-01
+author: Emin Yorgun
+tags: [JavaScript, Portfolio]
+excerpt: Optional short summary
+cover: Optional path/to/image
+coverAlt: Optional accessible alt text
+---
+
+Your markdown content here...
+```
+
+- Add/verify an entry in `data/posts/index.json` pointing to the file. Frontmatter values override `index.json` when both are present.
+
+## Configuration
+
+- `js/config.js` contains:
+  - **Theme**: keys and night hours for auto dark mode
+  - **Layout**: constants used by the UI
+  - **Routes**: route names used by the router
+  - **Blog**: posts per page, excerpt length, latest posts count
+  - **Contact/Social links**: update `CONFIG.CONTACT_INFO` and `CONFIG.SOCIAL_LINKS` as needed
+
+## Development
 
 ### Prerequisites
 
-- Modern web browser
-- Local HTTP server (optional, for development)
+- Any modern browser
+- Optional: a simple HTTP server for local development
 
-### Installation
+### Run locally
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd personal-website
-   ```
+Option 1 — open the file directly:
+- Open `index.html` in your browser
 
-2. No dependencies to install - this is a pure vanilla JavaScript project!
-
-### Development
-
-Simply open `index.html` in your browser, or use a local server:
-
-**Option 1: Direct file opening**
-- Open `index.html` directly in your browser
-
-**Option 2: Local server (recommended for development)**
+Option 2 — use a local server (recommended):
 ```bash
-# Using Python 3
+# Python 3
 python -m http.server 8000
 
-# Using Python 2
-python -m SimpleHTTPServer 8000
-
-# Using Node.js (if you have it)
+# Node (if installed)
 npx http-server . -p 8000
 ```
+The site will be available at `http://localhost:8000`.
 
-The application will be available at `http://localhost:8000`
+### NPM scripts (optional)
 
-### Production
+```bash
+npm run dev   # Starts a simple Python HTTP server on port 8000
+npm start     # Prints instructions (no build required)
+npm run build # Placeholder (no bundling/minification by default)
+```
 
-For production deployment, simply upload all files to your web hosting service. No build step is required.
+## Production
 
-## Key Components
+This is a static site. Deploy by uploading the repository contents to any static host (e.g., GitHub Pages, Netlify, Vercel, S3). If you use Cloudflare Web Analytics, replace the token in `index.html` (`data-cf-beacon`).
 
-### App Class
-The main application class (`src/App.js`) handles:
-- Client-side routing
-- Page rendering
-- State management (dark mode)
-- Event handling
+## Notes
 
-### Routing
-- `/` - Home page
-- `/blog` - Blog listing
-- `/blog/:id` - Individual blog post
-- `/contact` - Contact page
-
-### Styling
-The CSS uses:
-- CSS Custom Properties for theming
-- Flexbox and Grid for layouts
-- Glass morphism effects
-- Responsive design with mobile-first approach
-
-## Future Enhancements
-
-- **AI Chatbot**: Integration with local LLM for personalized responses
-- **Blog CMS**: Backend for managing blog content
-- **Performance**: Image optimization and lazy loading
-- **SEO**: Meta tag optimization and sitemap generation
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+- PrismJS styles are loaded from CDN and switch based on the active theme.
+- In development, `index.html` clears service workers and caches to avoid stale assets.
+- Icons are instantiated via `window.lucide.createIcons()` and `data-lucide` attributes.
 
 ## License
 
-This project is private and proprietary.
+MIT

@@ -645,12 +645,6 @@ class App {
                 <img src="assets/me.jpeg" alt="Emin Yorgun">
               </div>
             </div>
-            
-            <div class="ai-search-section">
-              <div class="search-box">
-                <input type="text" id="ai-search-input" name="ai-search-input" placeholder="Ask about Me to my AI assistant!" class="ai-search-input">
-              </div>
-            </div>
           </div>
         </div>
         
