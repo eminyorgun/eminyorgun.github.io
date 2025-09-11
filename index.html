@@ -4,46 +4,22 @@
     <meta charset="utf-8" />
     <link rel="icon" href="assets/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#2C5AA0" />
-    <meta name="description" content="Personal portfolio and blog website of Emin Yorgun - Software Engineer specializing in AI, computer vision, and full-stack development" />
-    <meta name="keywords" content="software engineer, developer, AI, computer vision, portfolio, blog, Emin Yorgun" />
-    <meta name="author" content="Emin Yorgun" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourdomain.com/" />
-    <meta property="og:title" content="Emin Yorgun - Software Engineer Portfolio" />
-    <meta property="og:description" content="Personal portfolio and blog website of Emin Yorgun - Software Engineer specializing in AI, computer vision, and full-stack development" />
-    <meta property="og:image" content="assets/me.jpeg" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://yourdomain.com/" />
-    <meta property="twitter:title" content="Emin Yorgun - Software Engineer Portfolio" />
-    <meta property="twitter:description" content="Personal portfolio and blog website of Emin Yorgun - Software Engineer specializing in AI, computer vision, and full-stack development" />
-    <meta property="twitter:image" content="assets/me.jpeg" />
+         <meta name="theme-color" content="#2C5AA0" />
+     <meta name="description" content="Personal portfolio and blog website of Emin Yorgun - Software Engineer specializing in AI, computer vision, and full-stack development" />
+     <meta name="keywords" content="software engineer, developer, AI, computer vision, portfolio, blog, Emin Yorgun" />
+     <meta name="author" content="Emin Yorgun" />
 
-    <title>Emin Yorgun - Software Engineer Portfolio</title>
-    
-    <!-- Stylesheets -->
+         <title>Emin Yorgun - Software Engineer Portfolio</title>
     <link rel="stylesheet" href="css/app.css?v=dev">
-    
-    <!-- External Libraries -->
     <script src="vendor/lucide.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/toolbar/prism-toolbar.min.css" />
-    
-    <!-- Prism.js Scripts -->
+    <link id="prism-theme-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css" />
+    <link id="prism-theme-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/toolbar/prism-toolbar.min.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-markup.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-css.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-clike.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/toolbar/prism-toolbar.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@1/components/"></script>
-    
-    <!-- Development Scripts -->
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/show-language/prism-show-language.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
     <script>
       // Aggressively remove any service workers and caches in dev
       if ('serviceWorker' in navigator) {
@@ -60,47 +36,41 @@
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "REPLACE_WITH_YOUR_CF_TOKEN"}'></script>
   </head>
   <body>
-    <noscript>
-      <div style="text-align: center; padding: 2rem;">
-        <h1>JavaScript Required</h1>
-        <p>You need to enable JavaScript to run this application.</p>
-      </div>
-    </noscript>
+         <noscript>
+       <div style="text-align: center; padding: 2rem;">
+         <h1>JavaScript Required</h1>
+         <p>You need to enable JavaScript to run this application.</p>
+       </div>
+     </noscript>
     
     <!-- Header -->
     <header>
       <div class="header-inner">
         <div class="hamburger-container">
-          <button class="hamburger-button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+          <button class="hamburger-button" aria-label="Menu" aria-expanded="false">
             <span class="hamburger-lines">
               <span class="line line1"></span>
               <span class="line line2"></span>
               <span class="line line3"></span>
             </span>
           </button>
-          <div class="hamburger-flyout" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+          <div class="hamburger-flyout">
             <ul>
               <li style="--item-index: 0">
-                <a class="nav-link" href="#" data-view="home" aria-label="Go to home page">
-                  <span class="nav-icon" aria-hidden="true">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-                  </span>
+                <a class="nav-link" href="#" data-view="home">
+                  <span class="nav-icon" data-lucide="home"></span>
                   <span class="nav-text">Home</span>
                 </a>
               </li>
               <li style="--item-index: 1">
-                <a class="nav-link" href="#" data-view="blog" aria-label="Go to blog page">
-                  <span class="nav-icon" aria-hidden="true">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
-                  </span>
+                <a class="nav-link" href="#" data-view="blog">
+                  <span class="nav-icon" data-lucide="file-text"></span>
                   <span class="nav-text">Blog</span>
                 </a>
               </li>
               <li style="--item-index: 2">
-                <a class="nav-link" href="#" data-view="contact" aria-label="Go to contact page">
-                  <span class="nav-icon" aria-hidden="true">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                  </span>
+                <a class="nav-link" href="#" data-view="contact">
+                  <span class="nav-icon" data-lucide="mail"></span>
                   <span class="nav-text">Contact</span>
                 </a>
               </li>
@@ -108,29 +78,23 @@
           </div>
         </div>
         
-        <nav role="navigation" aria-label="Main navigation">
+        <nav>
           <ul>
             <li>
-              <a class="nav-link" href="#" data-view="home" aria-label="Go to home page">
-                <span class="nav-icon" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-                </span>
+              <a class="nav-link" href="#" data-view="home">
+                <span class="nav-icon" data-lucide="home"></span>
                 <span class="nav-text">Home</span>
               </a>
             </li>
             <li>
-              <a class="nav-link" href="#" data-view="blog" aria-label="Go to blog page">
-                <span class="nav-icon" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
-                </span>
+              <a class="nav-link" href="#" data-view="blog">
+                <span class="nav-icon" data-lucide="file-text"></span>
                 <span class="nav-text">Blog</span>
               </a>
             </li>
             <li>
-              <a class="nav-link" href="#" data-view="contact" aria-label="Go to contact page">
-                <span class="nav-icon" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                </span>
+              <a class="nav-link" href="#" data-view="contact">
+                <span class="nav-icon" data-lucide="mail"></span>
                 <span class="nav-text">Contact</span>
               </a>
             </li>
@@ -138,11 +102,11 @@
         </nav>
         
         <div class="theme-toggle-container">
-          <button class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+          <button class="theme-toggle light">
             <div class="toggle-track">
               <div class="toggle-thumb">
-                <span class="toggle-icon sun" aria-hidden="true">☀️</span>
-                <span class="toggle-icon moon" aria-hidden="true">🌙</span>
+                <span class="toggle-icon sun">☀️</span>
+                <span class="toggle-icon moon">🌙</span>
               </div>
             </div>
           </button>
@@ -151,19 +115,19 @@
     </header>
 
     <!-- Main Content -->
-    <main id="app" role="main">
+    <main id="app">
       <!-- Views will be loaded dynamically here -->
     </main>
 
     <!-- Footer -->
-    <footer role="contentinfo">
+    <footer>
       <div class="footer-inner">
-        <div class="social-links" role="navigation" aria-label="Social media links">
-          <a href="https://github.com/eminyorgun" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile">GitHub</a>
-          <a href="https://linkedin.com/in/emin-yorgun" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile">LinkedIn</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Twitter profile">Twitter</a>
+        <div class="social-links">
+          <a href="https://github.com/eminyorgun" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://linkedin.com/in/emin-yorgun" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
         </div>
-        <p>© <span id="current-year">2024</span> Emin Yorgun. All rights reserved.</p>
+                 <p><span id="current-year"></span> - Emin Yorgun. All rights reserved.</p>
       </div>
     </footer>
 

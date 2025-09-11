@@ -1,3 +1,10 @@
+.dark-mode .blog-preview-item::before {
+  background: linear-gradient(135deg, transparent 0%, var(--secondary-color) 50%, transparent 100%);
+}
+
+.dark-mode .blog-card::before {
+  background: linear-gradient(135deg, transparent 0%, var(--secondary-color) 50%, transparent 100%);
+}
 /* ============================================
    Global Variables
 ============================================ */
@@ -60,11 +67,13 @@
   /* Height of fixed header + desired spacing; updated dynamically from JS */
   --header-offset: 72px;
   /* Code block theme */
-  --code-bg: #f7f6dc88;
+  --code-bg: #f6f8fa;
   --code-text: #111827;
   --code-border: rgba(17, 24, 39, 0.08);
   --code-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  --code-accent: var(--primary-color);
+  --code-font-size: 0.95rem;
+  --code-line-height: 1.5;
+  --code-tab-size: 2;
   /* Token colors (light) */
   --tok-keyword: #7c4dff;
   --tok-string: #d19a66;
@@ -93,6 +102,8 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -172,24 +183,20 @@ ul { list-style: none; }
    App Layout
 ============================================ */
 
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+/* Layout is now handled by body flexbox - no additional wrapper needed */
 
 /* Header */
-header {
+body > header {
   display: block;
   padding: 1rem 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  background: transparent;
   backdrop-filter: var(--glass-blur);
   transition: backdrop-filter 200ms ease, background 200ms ease;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 5000;
 }
 
 .header-inner {
@@ -202,12 +209,12 @@ header {
   padding: 0 var(--container-padding-x);
 }
 
-.dark-mode header {
-  background: linear-gradient(135deg, rgba(83, 83, 83, 0.1) 0%, rgba(47, 47, 47, 0.6) 100%);
+body.dark-mode > header {
+  background: transparent;
 }
 
 /* Increase blur when menu is open */
-body.menu-open header {
+body.menu-open > header {
   backdrop-filter: blur(8px);
 }
 
@@ -239,6 +246,21 @@ nav a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* Prevent icon jumps during loading */
+body:not(.icons-loaded) .nav-link .nav-icon {
+  min-width: 18px;
+  min-height: 18px;
+}
+
+/* Ensure stable navigation layout during icon loading */
+body:not(.icons-loaded) nav {
+  visibility: visible;
+}
+
+body:not(.icons-loaded) .hamburger-flyout {
+  visibility: visible;
 }
 
 .nav-link .nav-icon {
@@ -381,6 +403,17 @@ nav a:hover::after {
   opacity: 1;
 }
 
+/* Prevent slide animation until icons are loaded */
+body:not(.icons-loaded) .hamburger-flyout li {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+body:not(.icons-loaded) .hamburger-flyout.open li {
+  transition-delay: 0ms !important;
+}
+
 .hamburger-flyout.open li:nth-child(1) { transition-delay: 40ms; }
 .hamburger-flyout.open li:nth-child(2) { transition-delay: 80ms; }
 .hamburger-flyout.open li:nth-child(3) { transition-delay: 120ms; }
@@ -484,7 +517,7 @@ nav a:hover::after {
 
 /* Main & Footer */
 main {
-  flex: 1;
+  flex: 1; /* Takes all available space, pushing footer to bottom */
   width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
@@ -498,6 +531,7 @@ footer {
   border-top: var(--glass-border);
   padding: 2rem 0;
   text-align: center;
+  /* Automatically sticks to bottom due to body flexbox layout */
 }
 
 .footer-inner {
@@ -541,19 +575,6 @@ footer {
   box-shadow: var(--shadow-lg);
 }
 
-.btn.secondary {
-  background-color: var(--glass-effect); 
-  color: var(--text-primary); 
-  border: 2px solid var(--primary-color);
-  backdrop-filter: var(--glass-blur);
-}
-
-.btn.secondary:hover {
-  background-color: var(--primary-color); 
-  color: white; 
-  transform: translateY(-2px); 
-  box-shadow: var(--shadow-lg);
-}
 
 /* ============================================
    Sections
@@ -583,7 +604,6 @@ footer {
 .hero-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: flex-start;
   padding-top: 0;
   height: 100%;
@@ -598,6 +618,18 @@ footer {
 
 .hero h1 { font-size: 3rem; margin-bottom: 0rem; }
 .hero h1 .highlight { color: var(--primary-color); }
+
+.hero h1 .highlight {
+  transition: color 1.5s ease, text-shadow 0.8s ease; /* smooth fade */
+}
+
+.hero h1 .highlight:hover {
+  color: var(--accent-secondary);
+  cursor: default;
+  text-shadow: 0 0 10px rgba(248, 186, 136, 0.78);
+}
+
+
 .hero h2 { 
   font-size: 1.8rem; 
   margin-bottom: 3rem; 
@@ -652,11 +684,28 @@ footer {
   border-radius: 12px;
   padding: 1.5rem;
   transition: var(--transition);
+  cursor: pointer;
+  position: relative;
 }
 
 .blog-preview-item:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
+}
+
+/* Subtle golden gradient on hover (below content) */
+.blog-preview-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, var(--accent-color) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.blog-preview-item:hover::before {
+  opacity: 0.15;
 }
 
 .blog-preview-item h3 {
@@ -759,6 +808,10 @@ footer {
   margin: 0 auto;
 }
 
+.blog-header {
+  margin-bottom: 2rem;
+}
+
 .blog-controls {
   display: flex; 
   justify-content: space-between; 
@@ -769,6 +822,10 @@ footer {
   border-radius: 12px; 
   border: var(--glass-border);
 }
+
+/* Ensure blog controls (and dropdown) stack above cards */
+.blog-controls { position: relative; z-index: 3000; }
+.filter-menu { z-index: 4000; }
 
 .search-box input, 
 .category-filter select {
@@ -796,11 +853,27 @@ footer {
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   cursor: pointer;
+  position: relative;
 }
 
 .blog-card:hover { 
   transform: translateY(-10px); 
   box-shadow: 0 15px 25px rgba(0,0,0,0.1); 
+}
+
+/* Subtle golden gradient on hover (below content) */
+.blog-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, var(--accent-color) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.blog-card:hover::before {
+  opacity: 0.15;
 }
 
 .blog-card-content {
@@ -832,6 +905,22 @@ footer {
   font-size: 0.875rem;
 }
 
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.byline .author {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.byline .separator {
+  opacity: 0.6;
+}
+
 .blog-card-author {
   color: var(--text-secondary);
   font-size: 0.875rem;
@@ -844,7 +933,7 @@ footer {
   gap: 0.5rem;
 }
 
-.tag {
+.blog-card-tags .tag {
   padding: 0.25rem 0.75rem;
   background-color: var(--glass-effect);
   backdrop-filter: var(--glass-blur);
@@ -855,10 +944,31 @@ footer {
   transition: var(--transition);
 }
 
-.tag:hover {
+.blog-card-tags .tag:hover {
   background-color: var(--primary-color);
   color: white;
   transform: translateY(-1px);
+}
+
+/* Prevent Prism tokens from inheriting pill/button styles */
+pre code .token,
+pre[class*="language-"] .token,
+code[class*="language-"] .token {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Ensure specific tag token also stays neutral */
+pre code .token.tag,
+pre[class*="language-"] .token.tag,
+code[class*="language-"] .token.tag {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
 }
 
 .blog-image { 
@@ -946,7 +1056,7 @@ footer {
 }
 
 .post-header { 
-  margin-bottom: 2rem; 
+  margin-bottom: 3rem; 
 }
 
 .back-link { 
@@ -956,7 +1066,8 @@ footer {
 
 .post-meta { 
   display: flex; 
-  gap: 1rem; 
+  flex-direction: column;
+  gap: 0.5rem; 
   margin-bottom: 1rem; 
   color: #777; 
 }
@@ -979,66 +1090,9 @@ footer {
   margin-bottom: 1.5rem; 
 }
 
-.post-content pre {
-  position: relative;
-  background: var(--code-bg);
-  color: var(--code-text);
-  padding: 1.25rem 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  overflow-x: auto;
-  border: 1px solid var(--code-border);
-  box-shadow: var(--code-shadow);
-}
 
-.post-content pre code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.95rem;
-  white-space: pre;
-}
 
-/* Ensure Prism displays tokens correctly inside our themed container */
-.post-content pre[class*="language-"] {
-  background: var(--code-bg) !important;
-  border: 1px solid var(--code-border) !important;
-  box-shadow: var(--code-shadow) !important;
-}
-.post-content code[class*="language-"] {
-  color: var(--code-text);
-}
 
-/* Syntax highlighting tokens */
-.post-content pre .token.keyword { color: var(--tok-keyword); }
-.post-content pre .token.string { color: var(--tok-string); }
-.post-content pre .token.number { color: var(--tok-number); }
-.post-content pre .token.boolean { color: var(--tok-boolean); }
-.post-content pre .token.function { color: var(--tok-function); }
-.post-content pre .token.comment { color: var(--tok-comment); font-style: italic; }
-.post-content pre .token.operator { color: var(--tok-operator); }
-.post-content pre .token.punctuation { color: var(--tok-punctuation); }
-.post-content pre .token.tag { color: var(--tok-tag); }
-.post-content pre .token.attr-name { color: var(--tok-attr-name); }
-.post-content pre .token.attr-value { color: var(--tok-attr-value); }
-.post-content pre .token.selector { color: var(--tok-selector); }
-.post-content pre .token.property { color: var(--tok-property); }
-
-.post-content pre::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
-}
-
-.post-content pre:hover {
-  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-}
-
-/* Prism toolbar already provides copy; keep visual consistency */
-.post-content .code-toolbar .toolbar .toolbar-item {
-  margin: 0 4px;
-}
 
 .post-footer { 
   border-top: var(--glass-border); 
@@ -1261,7 +1315,7 @@ footer {
     padding-right: var(--container-padding-x);
   }
   /* Keep header compact and aligned on mobile */
-  header {
+  body > header {
     padding: 0.5rem 0;
   }
   
@@ -1487,3 +1541,17 @@ section {
   border-color: var(--secondary-color);
   box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
 }
+
+/* Tag filter dropdown */
+.tag-filter { position: relative; display: inline-block; }
+.filter-button { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; border-radius: 999px; border: var(--glass-border); background-color: var(--glass-effect); backdrop-filter: var(--glass-blur); color: var(--text-primary); }
+.filter-button:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.filter-menu { position: absolute; top: calc(100% + 8px); right: 0; width: 240px; max-height: 220px; overflow-y: auto; background-color: var(--bg-primary); border: var(--glass-border); border-radius: 12px; box-shadow: var(--shadow-xl); padding: 0.5rem; z-index: 2000; opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity 150ms ease, transform 150ms ease; }
+.filter-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.filter-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.25rem; cursor: pointer; }
+.filter-option input { accent-color: var(--primary-color); }
+.filter-option:hover { background-color: var(--bg-secondary); border-radius: 8px; }
+.filter-empty { padding: 0.75rem; color: var(--text-secondary); }
+
+/* Active tag style */
+.blog-card-tags .tag.active { background-color: var(--primary-color); color: #fff; }

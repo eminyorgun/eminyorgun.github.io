@@ -133,6 +133,150 @@ const Utils = {
       rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
+  },
+
+  // Parse simple YAML frontmatter from a Markdown string
+  parseFrontmatter: (markdownText) => {
+    if (typeof markdownText !== 'string') return { frontmatter: {}, content: '' };
+
+    const fmMatch = markdownText.match(/^---\n([\s\S]*?)\n---\n?/);
+    if (!fmMatch) {
+      return { frontmatter: {}, content: markdownText };
+    }
+
+    const fmBody = fmMatch[1];
+    const content = markdownText.slice(fmMatch[0].length);
+    const frontmatter = {};
+
+    // Very small YAML subset parser: key: value and key: [a, b], and list under key
+    const lines = fmBody.split(/\r?\n/);
+    let currentArrayKey = null;
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) continue;
+      if (line.startsWith('- ') && currentArrayKey) {
+        const val = line.slice(2).trim();
+        frontmatter[currentArrayKey].push(val);
+        continue;
+      }
+      const colonIdx = line.indexOf(':');
+      if (colonIdx === -1) continue;
+      const key = line.slice(0, colonIdx).trim();
+      let value = line.slice(colonIdx + 1).trim();
+
+      // Array literal [a, b]
+      if (value.startsWith('[') && value.endsWith(']')) {
+        const inner = value.slice(1, -1).trim();
+        frontmatter[key] = inner ? inner.split(',').map(v => v.trim().replace(/^['"]|['"]$/g, '')) : [];
+        currentArrayKey = null;
+        continue;
+      }
+
+      // Start of block list (value is empty)
+      if (value === '' || value === null) {
+        frontmatter[key] = [];
+        currentArrayKey = key;
+        continue;
+      }
+
+      // Remove surrounding quotes if present
+      value = value.replace(/^['"]|['"]$/g, '');
+      frontmatter[key] = value;
+      currentArrayKey = null;
+    }
+
+    return { frontmatter, content };
+  },
+
+  // Convert a subset of Markdown to HTML with Prism-friendly code blocks
+  markdownToHtml: (markdownText) => {
+    if (typeof markdownText !== 'string') return '';
+
+    // Handle code fences first: ```lang\n...\n```
+    let html = markdownText.replace(/```([\w-]+)?\n([\s\S]*?)```/g, (m, lang, code) => {
+      const language = (lang || '').trim();
+      const escaped = Utils.escapeHtmlForCode(code);
+      const classAttr = language ? `language-${language}` : '';
+      const preClass = classAttr ? ` class="${classAttr}"` : '';
+      const codeClass = classAttr ? ` class="${classAttr}"` : '';
+      return `<pre${preClass}><code${codeClass}>${escaped}</code></pre>`;
+    });
+
+    // Inline code `code`
+    html = html.replace(/`([^`]+)`/g, (m, code) => `<code>${Utils.escapeHtml(code)}</code>`);
+
+    // Headings ###, ##, # (support up to h3 used in posts)
+    html = html.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>');
+    html = html.replace(/^##\s+(.+)$/gm, '<h2>$1</h2>');
+    html = html.replace(/^#\s+(.+)$/gm, '<h1>$1</h1>');
+
+    // Bold **text** and italic *text*
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    // Restrict italics to a single line to avoid spanning across blocks/code
+    html = html.replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>');
+
+    // Unordered lists - lines starting with - or *
+    html = html.replace(/^(?:- |\* )(.*(?:\n(?:- |\* ).*)*)/gm, (m) => {
+      const items = m.split(/\n/).map(l => l.replace(/^(?:- |\* )/, '').trim()).map(it => `<li>${it}</li>`).join('');
+      return `<ul>${items}</ul>`;
+    });
+
+    // Protect code blocks from paragraph processing
+    const codeBlocks = [];
+    html = html.replace(/<pre[\s\S]*?<\/pre>/g, (match) => {
+      const placeholder = `@@CODE_BLOCK_${codeBlocks.length}@@`;
+      codeBlocks.push(match);
+      return placeholder;
+    });
+
+    // Paragraphs: wrap remaining non-empty lines/blocks with <p>
+    const blocks = html.split(/\n\n+/).map(b => b.trim()).filter(Boolean).map(block => {
+      if (/^<h\d|^<ul>|^<p>|^<blockquote>|^<table>|^<img|^<code/.test(block)) return block;
+      // Preserve single newlines within a paragraph
+      return `<p>${block.replace(/\n/g, '<br>')}</p>`;
+    });
+
+    let result = blocks.join('\n');
+    // Restore code blocks
+    codeBlocks.forEach((code, i) => {
+      result = result.replace(`@@CODE_BLOCK_${i}@@`, code);
+    });
+
+    return result;
+  },
+
+  // Escape helper for code blocks
+  escapeHtmlForCode: (text) => {
+    if (typeof text !== 'string') return '';
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  },
+
+  // Strip Markdown to plain text for excerpt generation
+  stripMarkdown: (markdownText) => {
+    if (typeof markdownText !== 'string') return '';
+    return markdownText
+      .replace(/```[\s\S]*?```/g, '') // remove code fences
+      .replace(/`[^`]*`/g, '') // remove inline code
+      .replace(/^#{1,6}\s+/gm, '') // remove headings
+      .replace(/\*\*|__/g, '') // remove bold markers
+      .replace(/\*|_/g, '') // remove italic markers
+      .replace(/^(?:- |\* )/gm, '') // remove list markers
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // links -> text
+      .replace(/\n+/g, ' ')
+      .trim();
+  },
+
+  // Generate excerpt from Markdown content with max length
+  generateExcerpt: (markdownText, maxLength) => {
+    const plain = Utils.stripMarkdown(markdownText);
+    if (!plain) return '';
+    if (!maxLength || plain.length <= maxLength) return plain;
+    const truncated = plain.slice(0, maxLength);
+    const lastSpace = truncated.lastIndexOf(' ');
+    return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated).trim() + '…';
   }
 };
 

@@ -24,6 +24,7 @@ const CONFIG = {
   // Theme constants
   THEME: {
     STORAGE_KEY: 'theme',
+    PREF_LAST_SET_KEY: 'theme_last_set',
     DARK: 'dark',
     LIGHT: 'light',
     NIGHT_START_HOUR: 19,
@@ -80,14 +81,14 @@ const CONFIG = {
   // Contact information
   CONTACT_INFO: {
     EMAIL: 'eminyorgun.developer@gmail.com',
-    LOCATION: 'Charleston, SC, United States'
+    LOCATION: 'Charleston, SC, USA'
   },
 
   // Blog configuration
   BLOG: {
     LATEST_POSTS_COUNT: 3,
     POSTS_PER_PAGE: 10,
-    EXCERPT_MAX_LENGTH: 10
+    EXCERPT_MAX_LENGTH: 150
   },
 
   // Form validation

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "about-this-website",
+    "title": "About This Website — Structure, Stack, and How It Works",
+    "date": "2025-09-09",
+    "author": "Emin",
+    "tags": ["portfolio", "architecture", "vanilla-js", "css", "ux"],
+    "excerpt": "A concise overview of how this site is structured, the tech choices behind it, and what makes it fast, accessible, and easy to maintain.",
+    "file": "data/posts/website-overview.md"
+  },
+  {
+    "id": "flask-to-fastapi",
+    "title": "Why I’m Moving from Flask to FastAPI",
+    "date": "2025-02-19",
+    "author": "Emin",
+    "tags": ["python", "backend", "fastapi", "flask", "web-apis"],
+    "excerpt": "My firsthand reasons for switching from Flask to FastAPI—less boilerplate, built-in validation, async performance, and a smoother developer experience.",
+    "file": "data/posts/flask-to-fastapi.md"
+  },
+  {
+    "id": "building-rest-api-go",
+    "title": "Building a REST API with Go",
+    "date": "2024-06-15",
+    "author": "Emin",
+    "tags": ["go", "api", "web-development", "backend"],
+    "excerpt": "Learn how to create a robust REST API using Go, including authentication, validation, and testing.",
+    "file": "data/posts/building-rest-api-go.md"
+  },
+  {
+    "id": "spring-boot-computer-vision",
+    "title": "Setting Up Spring Boot for Computer Vision",
+    "date": "2025-02-10",
+    "author": "Emin",
+    "tags": ["java", "spring-boot", "computer-vision", "opencv", "ml"],
+    "excerpt": "How I wired up a Spring Boot backend with OpenCV and got image inference working reliably—what I chose, what broke, and what I’d do again.",
+    "file": "data/posts/spring-boot-computer-vision.md"
+  }
+]
