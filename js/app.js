@@ -96,6 +96,7 @@ class App {
       this.render();
       this.updateThemeUI();
       this.updateCurrentYear();
+      this.updateSocialLinks();
     } catch (error) {
       Utils.handleError(error, 'init');
     }
@@ -124,7 +125,7 @@ class App {
         // Merge metadata: frontmatter overrides index where present
         const id = frontmatter.id || idxItem.id;
         const title = frontmatter.title || idxItem.title || '';
-        const date = frontmatter.date || idxItem.date || '';
+        const order = Number((frontmatter.order !== undefined ? frontmatter.order : idxItem.order) || 0);
         const author = frontmatter.author || idxItem.author || '';
         const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : (idxItem.tags || []);
         const excerptSource = frontmatter.excerpt || idxItem.excerpt || '';
@@ -132,11 +133,11 @@ class App {
         const cover = frontmatter.cover || null;
         const coverAlt = frontmatter.coverAlt || '';
 
-        return { id, title, date, author, tags, excerpt, html, cover, coverAlt };
+        return { id, title, order, author, tags, excerpt, html, cover, coverAlt };
       });
 
-      // Sort posts by date desc (if valid date strings)
-      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      // Sort posts by order desc; fallback to 0
+      posts.sort((a, b) => (Number(b.order) || 0) - (Number(a.order) || 0));
 
       // Aggregate tags dynamically
       const tagSet = new Set();
@@ -454,8 +455,8 @@ class App {
       return matchesQuery && matchesTags;
     });
 
-    // Ensure newest to oldest ordering
-    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Ensure ordering by custom order (desc)
+    filtered.sort((a, b) => (Number(b.order) || 0) - (Number(a.order) || 0));
 
     const perPage = CONFIG.BLOG.POSTS_PER_PAGE;
     const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
@@ -505,7 +506,6 @@ class App {
           <h2 class="blog-card-title">${Utils.escapeHtml(post.title)}</h2>
           <p class="blog-card-excerpt">${Utils.escapeHtml(post.excerpt)}</p>
           <div class="blog-card-meta">
-            <span class="blog-card-date">${Utils.escapeHtml(Utils.formatDate(post.date))}</span>
             <span class="blog-card-author">By ${Utils.escapeHtml(post.author)}</span>
             <div class="blog-card-tags">
               ${post.tags.map(tag => `<span class=\"tag\">${Utils.escapeHtml(tag)}</span>`).join('')}
@@ -713,8 +713,6 @@ class App {
             <div class="post-meta">
               <div class="byline">
                 <span class="author">${Utils.escapeHtml(post.author)}</span>
-                <span class="separator" aria-hidden="true">•</span>
-                <span class="blog-card-date">${Utils.escapeHtml(Utils.formatDate(post.date))}</span>
               </div>
               <div class="blog-card-tags">
                 ${post.tags.map(tag => `<span class="tag">${Utils.escapeHtml(tag)}</span>`).join('')}
@@ -801,14 +799,13 @@ class App {
 
   renderLatestPosts() {
     const latestPosts = [...this.blogPosts]
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .sort((a, b) => (Number(b.order) || 0) - (Number(a.order) || 0))
       .slice(0, CONFIG.BLOG.LATEST_POSTS_COUNT);
     return latestPosts.map(post => `
       <div class="blog-preview-item" data-post-id="${post.id}" tabindex="0">
         <h3>${Utils.escapeHtml(post.title)}</h3>
         <p>${Utils.escapeHtml(post.excerpt)}</p>
         <div class="blog-preview-meta">
-          <span class="blog-preview-date">${Utils.escapeHtml(Utils.formatDate(post.date))}</span>
           <span class="blog-preview-author">by ${Utils.escapeHtml(post.author)}</span>
         </div>
         <a href="#/blog/${post.id}" class="read-more">Read More</a>
@@ -1004,6 +1001,29 @@ class App {
       }
     } catch (error) {
       Utils.handleError(error, 'updateCurrentYear');
+    }
+  }
+
+  updateSocialLinks() {
+    try {
+      const map = {
+        github: CONFIG.SOCIAL_LINKS.GITHUB,
+        linkedin: CONFIG.SOCIAL_LINKS.LINKEDIN,
+        twitter: CONFIG.SOCIAL_LINKS.TWITTER,
+        instagram: CONFIG.SOCIAL_LINKS.INSTAGRAM
+      };
+      const links = document.querySelectorAll('[data-social]');
+      links.forEach((el) => {
+        const key = el.getAttribute('data-social');
+        const href = map[key];
+        if (href) {
+          el.setAttribute('href', href);
+        } else {
+          el.removeAttribute('href');
+        }
+      });
+    } catch (error) {
+      Utils.handleError(error, 'updateSocialLinks');
     }
   }
 }

@@ -1,7 +1,6 @@
 ---
 id: spring-boot-computer-vision
 title: Setting Up Spring Boot for Computer Vision
-date: 2025-02-10
 author: Emin
 tags:
   - java
