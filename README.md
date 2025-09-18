@@ -63,7 +63,6 @@ personal-website/
 ---
 id: my-post
 title: My Post Title
-date: 2025-09-01
 author: Emin Yorgun
 tags: [JavaScript, Portfolio]
 excerpt: Optional short summary
