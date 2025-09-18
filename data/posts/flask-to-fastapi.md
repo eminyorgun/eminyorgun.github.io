@@ -1,7 +1,6 @@
 ---
 id: flask-to-fastapi
 title: Why I’m Moving from Flask to FastAPI
-date: 2025-02-19
 author: Emin
 tags:
   - python

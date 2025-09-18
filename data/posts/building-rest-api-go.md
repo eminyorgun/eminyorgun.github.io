@@ -1,7 +1,6 @@
 ---
 id: building-rest-api-go
 title: Building a REST API with Go
-date: 2024-06-15
 author: Emin
 tags:
   - go
