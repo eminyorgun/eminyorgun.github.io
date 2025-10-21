@@ -34,5 +34,14 @@
     "tags": ["java", "spring-boot", "computer-vision", "opencv", "ml"],
     "excerpt": "How I wired up a Spring Boot backend with OpenCV and got image inference working reliably—what I chose, what broke, and what I’d do again.",
     "file": "data/posts/spring-boot-computer-vision.md"
-  }
+  },
+  {
+  "id": "python-314-no-gil",
+  "title": "Python 3.14’s No-GIL Update — My Take",
+  "order": 1,
+  "author": "Emin",
+  "tags": ["python", "concurrency", "performance", "multithreading"],
+  "excerpt": "Python 3.14 finally brings an optional no-GIL build. Here’s what it really changes, what to watch for, and how I’m testing it.",
+  "file": "data/posts/python-314-no-gil.md"
+  }  
 ]
