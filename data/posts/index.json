@@ -38,7 +38,7 @@
   {
   "id": "python-314-no-gil",
   "title": "Python 3.14’s No-GIL Update — My Take",
-  "order": 1,
+  "order": 5,
   "author": "Emin",
   "tags": ["python", "concurrency", "performance", "multithreading"],
   "excerpt": "Python 3.14 finally brings an optional no-GIL build. Here’s what it really changes, what to watch for, and how I’m testing it.",
