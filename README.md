@@ -124,6 +124,3 @@ This is a static site. Deploy by uploading the repository contents to any static
 - In development, `index.html` clears service workers and caches to avoid stale assets.
 - Icons are instantiated via `window.lucide.createIcons()` and `data-lucide` attributes.
 
-## License
-
-MIT
