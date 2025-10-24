@@ -1,6 +1,6 @@
 ---
 id: python-314-no-gil
-title: Python 3.14’s No-GIL Update — My Take
+title: Python 3.14’s No-GIL Update
 author: Emin
 tags:
   - python
