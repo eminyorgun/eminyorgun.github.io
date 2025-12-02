@@ -124,7 +124,7 @@ func TestHealth(t *testing.T) {
 
 ## Lessons learned
 
-- Prefer the standard library until it hurts—then add small, focused libs.
+- Prefer the standard library until it hurts, then add small, focused libs.
 - Keep handlers pure and fast; do heavy lifting in services/background jobs.
 - Measure before “optimizing.” Most wins came from timeouts and backpressure.
 
