@@ -10,7 +10,7 @@ tags:
   - web-apis
 excerpt: My firsthand reasons for switching from Flask to FastAPI—less boilerplate, built-in validation, async performance, and a smoother developer experience.
 ---
-I like Flask. I’ve shipped plenty of small APIs and dashboards with it. But as my services grew—more endpoints, more integrations, Flask started costing me time in places FastAPI just… doesn’t. Here’s what finally pushed me to switch, and what I’m getting back.
+I like Flask. I’ve shipped plenty of small APIs and dashboards with it. But as my services grew with more endpoints, more integrations, Flask started costing me time in places FastAPI just… doesn’t. Here’s what finally pushed me to switch, and what I’m getting back.
 
 ## What slowed me down in Flask
 
