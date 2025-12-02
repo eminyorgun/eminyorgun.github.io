@@ -1,6 +1,6 @@
 ---
 id: about-this-website
-title: About This Website: Structure, Stack, and How It Works
+title: About This Website Structure, Stack, and How It Works
 author: Emin
 tags:
   - portfolio
