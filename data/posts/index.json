@@ -43,5 +43,14 @@
   "tags": ["python", "concurrency", "performance", "multithreading"],
   "excerpt": "Python 3.14 finally brings an optional no-GIL build. Here’s what it really changes, what to watch for, and how I’m testing it.",
   "file": "data/posts/python-314-no-gil.md"
+  },
+  {
+  "id": "why-convolution-works",
+  "title": "Why Convolution Actually Works",
+  "order": 6,
+  "author": "Emin",
+  "tags": ["machine-learning", "deep-learning", "convolution", "signal-processing"],
+  "excerpt": "Convolution highlights edges and structures because filters encode patterns and the operation measures how well data matches them.",
+  "file": "data/posts/why-convolution-works"
   }  
 ]
