@@ -10,7 +10,7 @@ tags:
 excerpt: Convolution works by checking how much each patch of data matches a tiny pattern, which is why it reveals structures like edges and textures.
 ---
 
-Most explanations talk about sliding the filter, multiplying and adding, which is exactly what convolution does. The part that usually gets lost is why those basic actions end up detecting edges, textures and shapes. A simpler way to see it is this: the filter is a small pattern written in numbers, and convolution measures how much the data matches that pattern at each position.
+Most explanations focus on sliding the filter, multiplying and adding, which is exactly what convolution does. The part that usually gets lost is why those basic actions end up detecting edges, textures and shapes. A simpler way to see it is this: the filter is a small pattern written in numbers, and convolution measures how much the data matches that pattern at each position.
 
 Think of the filter as a tiny stencil. If it is an edge filter, its numbers describe something like “bright over here, darker over there”. When you place that stencil on top of a patch of the image, each pair of overlapping numbers is multiplied. If the image patch has the same shape the stencil expects, the products reinforce each other. If the patch does not match, the products cancel out.
 
