@@ -20,4 +20,4 @@ Sliding the filter across the image just repeats this check everywhere. Instead 
 
 The final output is a map that shows where the filter found its pattern. Big values mark strong matches. Small values mark weak or absent matches. The process is basic arithmetic, but the meaning comes from what the filter represents: a pattern the data might contain.
 
-See also this link to immerse more in this concept. Absolutely one of my favorite websites: https://betterexplained.com/articles/intuitive-convolution/
+See also this link to immerse more in this concept. Absolutely one of my favorite websites: <a href="[url](https://betterexplained.com/articles/intuitive-convolution/)">Better Explained</a>
