@@ -51,6 +51,6 @@
   "author": "Emin",
   "tags": ["machine-learning", "deep-learning", "convolution", "signal-processing"],
   "excerpt": "Convolution highlights edges and structures because filters encode patterns and the operation measures how well data matches them.",
-  "file": "data/posts/why-convolution-works"
+  "file": "data/posts/why-convolution-works.md"
   }  
 ]
