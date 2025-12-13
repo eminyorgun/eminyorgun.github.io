@@ -55,8 +55,8 @@
   --shadow-xl: 0 16px 32px rgba(44, 90, 160, 0.1);
   
   /* Typography & Effects */
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Andale Mono', monospace;
+  --font-body: 'Andale Mono', monospace;
   --transition: all 0.3s ease;
   --glass-blur: blur(5px);
   
