@@ -623,16 +623,16 @@ class App {
           <div class="hero-container">
             <div class="hero">
               <h1>Hey, I'm <span class="highlight">Emin</span></h1>
-              <h2>Developer | Engineer | Learner</h2>
+              <h2>Developer | Engineer</h2>
               <h3>Welcome to my space where I share ideas, projects, and things I'm learning.</h3>
-              <h3>Software Engineer based in 🇺🇸</h3>
+              <h3>Software Engineer based in the US🇺🇸</h3>
               
               <div class="divider-line"></div>
               
               <div class="bio-content">
-                <p>I build with Java, Python, C++, React, Go, and more. This site is my digital notebook for projects and insights in AI, computer vision, game dev, and beyond.</p>
-                <p>I've worked as both freelancer and employee, across backend/frontend, image processing, OCR, and games — proving I can quickly master any technology or domain, no matter my prior experience. I tackle unfamiliar challenges with confidence and deliver quality results.</p>
-                <p>Outside coding, I play multiple instruments, hike, fish, birdwatch, and play chess.</p>
+                <p>Software engineer writing about backend systems, data pipelines, and applied artificial intelligence (AI) in real world production.</p>
+                <p>I've worked as both freelancer and employee, across backend/frontend, image processing and games — proving I can quickly master any technology or domain, no matter my prior experience. I tackle unfamiliar challenges with confidence and deliver quality results.</p>
+                <p>Outside coding, I play multiple instruments, hike, fish, and play video games.</p>
                 <p>I hold a Mechatronics Engineering degree.</p>
               </div>
             </div>
