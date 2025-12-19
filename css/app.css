@@ -598,6 +598,7 @@ footer {
   padding: 2rem 0;
   align-items: stretch;
   min-height: 80vh;
+  width: 100%;
 }
 
 /* Ensure two-column layout on desktop */
