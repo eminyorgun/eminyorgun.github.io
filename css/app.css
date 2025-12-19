@@ -600,6 +600,14 @@ footer {
   min-height: 80vh;
 }
 
+/* Ensure two-column layout on desktop */
+@media (min-width: 769px) {
+  .main-content-container {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+  }
+}
+
 /* Hero Container - Left Side */
 .hero-container {
   display: flex;
