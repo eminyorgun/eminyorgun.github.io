@@ -631,9 +631,19 @@ class App {
               
               <div class="bio-content">
                 <p>Software engineer writing about backend systems, data pipelines, and applied artificial intelligence (AI) in real world production.</p>
-                <p>I've worked as both freelancer and employee, across backend/frontend, image processing and games — proving I can quickly master any technology or domain, no matter my prior experience. I tackle unfamiliar challenges with confidence and deliver quality results.</p>
-                <p>Outside coding, I play multiple instruments, hike, fish, and play video games.</p>
-                <p>I hold a Mechatronics Engineering degree.</p>
+                <p>I've worked as both freelancer and employee, across backend/frontend, image processing and games, proving I can quickly master any technology or domain, no matter my prior experience.</p>
+              </div>
+              </div>
+              
+              <div class="hero-social-links">
+                <a href="${CONFIG.SOCIAL_LINKS.GITHUB}" target="_blank" rel="noopener noreferrer" class="social-link">
+                  <span class="social-icon" data-lucide="github"></span>
+                  <span class="social-name">GitHub</span>
+                </a>
+                <a href="${CONFIG.SOCIAL_LINKS.LINKEDIN}" target="_blank" rel="noopener noreferrer" class="social-link">
+                  <span class="social-icon" data-lucide="linkedin"></span>
+                  <span class="social-name">LinkedIn</span>
+                </a>
               </div>
             </div>
           </div>
