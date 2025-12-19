@@ -660,6 +660,51 @@ footer {
   margin-bottom: 0;
 }
 
+.hero-social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.hero-social-links .social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 0.5rem 0;
+}
+
+.hero-social-links .social-link:hover {
+  color: var(--primary-color);
+  transform: translateX(2px);
+}
+
+.dark-mode .hero-social-links .social-link:hover {
+  color: var(--secondary-color);
+}
+
+.hero-social-links .social-icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  line-height: 0;
+}
+
+.hero-social-links .social-icon svg,
+.hero-social-links .social-icon .lucide {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+.hero-social-links .social-name {
+  font-size: 1rem;
+}
+
 /* Divider line under "Based in 🇺🇸" */
 .divider-line {
   width: 100%;
