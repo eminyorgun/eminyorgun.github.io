@@ -633,7 +633,6 @@ class App {
                 <p>Software engineer writing about backend systems, data pipelines, and applied artificial intelligence (AI) in real world production.</p>
                 <p>I've worked as both freelancer and employee, across backend/frontend, image processing and games, proving I can quickly master any technology or domain, no matter my prior experience.</p>
               </div>
-              </div>
               
               <div class="hero-social-links">
                 <a href="${CONFIG.SOCIAL_LINKS.GITHUB}" target="_blank" rel="noopener noreferrer" class="social-link">
