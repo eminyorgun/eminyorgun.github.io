@@ -630,8 +630,8 @@ class App {
               <div class="divider-line"></div>
               
               <div class="bio-content">
-                <p>Software engineer writing about backend systems, data pipelines, and applied artificial intelligence (AI) in real world production.</p>
-                <p>I've worked as both freelancer and employee, across backend/frontend, image processing and games, proving I can quickly master any technology or domain, no matter my prior experience.</p>
+                <p>A Software engineer experienced on backend systems, applied AI, cloud using Python, Java, JS.</p>
+                <p>I've worked as both freelancer and employee, across backend, image processing and games, proving I can quickly master any technology or domain, no matter my prior experience.</p>
               </div>
               
               <div class="hero-social-links">
