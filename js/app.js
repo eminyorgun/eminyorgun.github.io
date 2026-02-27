@@ -768,14 +768,6 @@ class App {
               <span class="contact-icon" data-lucide="github"></span>
               <a href="${CONFIG.SOCIAL_LINKS.GITHUB}" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
-            <div class="info-item">
-              <span class="contact-icon" data-lucide="instagram"></span>
-              <a href="${CONFIG.SOCIAL_LINKS.INSTAGRAM}" target="_blank" rel="noopener noreferrer">Instagram</a>
-            </div>
-            <div class="info-item">
-              <span class="contact-icon" data-lucide="twitter"></span>
-              <a href="${CONFIG.SOCIAL_LINKS.TWITTER}" target="_blank" rel="noopener noreferrer">Twitter/X</a>
-            </div>
           </div>
           
           <form class="contact-form" id="contact-form">
@@ -1018,8 +1010,6 @@ class App {
       const map = {
         github: CONFIG.SOCIAL_LINKS.GITHUB,
         linkedin: CONFIG.SOCIAL_LINKS.LINKEDIN,
-        twitter: CONFIG.SOCIAL_LINKS.TWITTER,
-        instagram: CONFIG.SOCIAL_LINKS.INSTAGRAM
       };
       const links = document.querySelectorAll('[data-social]');
       links.forEach((el) => {
