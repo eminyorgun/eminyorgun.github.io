@@ -52,5 +52,14 @@
   "tags": ["machine-learning", "deep-learning", "convolution", "signal-processing"],
   "excerpt": "Convolution works by checking how much each patch of data matches a tiny pattern, which is why it reveals structures like edges and textures.",
   "file": "data/posts/why-convolution-works.md"
-  }  
+  },
+  {
+  "id": "geospatial-traffic-analysis",
+  "title": "Geospatial Traffic Analytics Pipeline & API",
+  "order": 7,
+  "author": "Emin",
+  "tags": ["prefect", "postgis", "etl-pipeline", "data-engineering", "fastapi"],
+  "excerpt": "Prefect-backed Geospatial Traffic Analytics Pipeline and API using FastAPI and Docker.",
+  "file": "data/posts/geospatial-traffic-analysis.md"
+  }
 ]
