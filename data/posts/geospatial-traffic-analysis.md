@@ -15,7 +15,7 @@ excerpt: Prefect-backed Geospatial Traffic Analytics Pipeline and API using Fast
 
 I built a data pipeline that ingests 1.6 million US road segments from federal open data, computes 270 million hourly traffic volume estimates, and serves the results through a geospatial REST API. Here is what I built, why I made the decisions I did, and what broke along the way.
 
-The full code is at <a href="https://github.com/eminyorgun/geospatial-traffic-analytics/">
+The full code is at <a href="https://github.com/eminyorgun/geospatial-traffic-analytics/"></a>
 
 ## The Data
 
