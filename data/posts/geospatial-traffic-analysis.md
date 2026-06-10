@@ -1,6 +1,6 @@
 ---
 id: geospatial-traffic-analysis
-title: Geospatial Traffic Analytics Pipeline
+title: Geospatial Traffic Analytics Pipeline & API
 author: Emin
 tags:
   - prefect
@@ -8,9 +8,8 @@ tags:
   - etl-pipeline
   - data-engineering
   - fastapi
-excerpt: Prefect-backed Geospatial Traffic Analytics served using FastAPI.
+excerpt: Prefect-backed Geospatial Traffic Analytics Pipeline and API using FastAPI and Docker.
 ---
-
 
 # Building a Geospatial Traffic Analytics Pipeline
 
